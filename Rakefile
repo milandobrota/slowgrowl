@@ -12,7 +12,7 @@ begin
     gemspec.homepage = 'http://github.com/igrigorik/slowgrowl'
     gemspec.authors = ['Ilya Grigorik', 'Milan Dobrota']
     gemspec.rubyforge_project = 'slowgrowl'
-    SlowGrowl::GEMS.each do |gem|
+    SlowGrowl::DEPENDENT_GEMS.each do |gem|
       gemspec.add_dependency(gem)
     end
   end
