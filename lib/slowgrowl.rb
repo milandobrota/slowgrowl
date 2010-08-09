@@ -1,7 +1,7 @@
 require 'platform'
 
-SlowGrowl::REQUIRE_GEMS.each do |gem_name|
-  require gem_name
+SlowGrowl::GEMS.each do |dep|
+  require (dep[:require] || dep[:name])
 end
 
 module SlowGrowl
@@ -70,11 +70,8 @@ module SlowGrowl
                 if Growl.installed?
                   Growl.send("notify_#{alert}", message, {:title => title, :sticky => sticky})
                 end
-
-              when :rnotify
-                @notification.update(title, message, nil) if @notification
-                @notification = Notify::Notification.new(title, message, nil, nil)
-                @notification.show
+              when :libnotify
+                Notify::Notification.new(title, message, nil, nil).show
             end
           end
 

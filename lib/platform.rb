@@ -1,10 +1,9 @@
 module SlowGrowl
   if RUBY_PLATFORM =~ /linux/i
-      NOTIFIER = :rnotify
-      REQUIRE_GEMS = ['gtk2', 'rnotify']
-      DEPENDENT_GEMS = ['gtk2', 'ruby-libnotify']
+    NOTIFIER = :libnotify
+    GEMS = [{:name => 'gtk2'}, {:name => 'ruby-libnotify', :require => 'rnotify'}]
   else
     NOTIFIER = :growl
-    REQUIRE_GEMS = DEPENDENT_GEMS = ['growl']
+    GEMS = [{:name => 'growl'}]
   end
 end

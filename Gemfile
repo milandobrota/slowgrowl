@@ -3,8 +3,8 @@ require 'lib/platform'
 source :rubygems
 source :gemcutter
 
-SlowGrowl::DEPENDENT_GEMS.each do |gem_name|
-  gem gem_name
+SlowGrowl::GEMS.each do |dep|
+  gem dep[:name], :require => (dep[:require] || dep[:name])
 end
 
 # group :test do
